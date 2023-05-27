@@ -19,11 +19,6 @@ class SenpaiCli < Formula
     sha256 "34e0a2f9c370eb95597aae63bf85eb5e96826d81e3dcf88b8886012906f509b5"
   end
 
-  resource "gnureadline" do
-    url "https://files.pythonhosted.org/packages/83/03/65d82e9290ae8a2a3b2285dc8aebd304437a6ba7ad03823438730525ab45/gnureadline-8.1.2-cp311-cp311-macosx_11_0_arm64.whl"
-    sha256 "74f2538ac15ff4ef9534823abdef077bb34c7dd343e204a36d978f09e168462f"
-  end
-
   resource "idna" do
     url "https://files.pythonhosted.org/packages/8b/e1/43beb3d38dba6cb420cefa297822eac205a277ab43e5ba5d5c46faf96438/idna-3.4.tar.gz"
     sha256 "814f528e8dead7d329833b91c5faa87d60bf71824cd12a7530b5526063d02cb4"
@@ -47,6 +42,14 @@ class SenpaiCli < Formula
   def install
     python = "python3.11"
     venv = virtualenv_create(libexec, python)
+
+    # install gnureadline from .whl
+    if Hardware::CPU.arm?
+      venv.pip_install "https://files.pythonhosted.org/packages/83/03/65d82e9290ae8a2a3b2285dc8aebd304437a6ba7ad03823438730525ab45/gnureadline-8.1.2-cp311-cp311-macosx_11_0_arm64.whl"
+    else
+      venv.pip_install "https://files.pythonhosted.org/packages/a7/f2/77195ef94f56b61ad881685e3a87cc39a9972e01ccacd555acaa001a92a0/gnureadline-8.1.2-cp311-cp311-macosx_10_9_x86_64.whl"
+    end
+
     venv.pip_install resources
 
     system libexec/"bin/python", "setup.py", "build"
