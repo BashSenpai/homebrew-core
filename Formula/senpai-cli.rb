@@ -1,10 +1,24 @@
+# Copyright 2023 Bogdan Tatarov
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 class SenpaiCli < Formula
   include Language::Python::Virtualenv
 
   desc "BashSenpai command-line interface"
   homepage "https://bashsenpai.com/"
-  url "https://github.com/BashSenpai/cli/archive/refs/tags/v0.80b.tar.gz"
-  sha256 "90e72c266fb3580508fdb0082d263311a97741ed4665055e245f8ae52b2b8dac"
+  url "https://github.com/BashSenpai/cli/archive/refs/tags/v0.81b.tar.gz"
+  sha256 "e9db26bfddef1cbcbf12c44aa41e17249e99c3d2a3dadb1bf29e31e463efbc13"
   license "Apache-2.0"
 
   depends_on "python@3.11"
